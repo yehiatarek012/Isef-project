@@ -1,0 +1,5 @@
+# [27b] .gitignore: files Git must NOT upload
+venv/
+__pycache__/
+.ipynb_checkpoints/
+Data/
