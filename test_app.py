@@ -15,4 +15,4 @@ cases = [('normal', base), ('low hgb', low_hgb), ('wrong unit', wrong_unit), ('m
 for name, case in cases:
     result = analyze(case, 'female', artifacts)
     print(name, '->', result.get('diagnosis'), result.get('severity'),
-          result.get('urgent') is not None, result.get('warnings'), result.get('error'))
+          result.get('urgent') is not None, result.get('warnings'), result.get('errors'))

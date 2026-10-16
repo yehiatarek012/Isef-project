@@ -47,9 +47,9 @@ def analyze(values, sex, artifacts):
     features = artifacts['features']
     missing = [f for f in features if f not in values]
     if missing:
-        return {'error': f"Missing values: {missing}"}
+        return {'errors': [f"Missing value: {name}" for name in missing]}
     if sex not in ('male', 'female'):
-        return {'error': "sex must be 'male' or 'female'"}
+        return {'errors': ["sex must be 'male' or 'female'"]}
             # [25b] app_core.py: inside analyze(), reject impossible values before predicting
     impossible = []
     for name in features:
@@ -57,7 +57,7 @@ def analyze(values, sex, artifacts):
         if not (low <= values[name] <= high):
             impossible.append(f"{name}={values[name]} is outside the possible range ({low} to {high}); check the unit")
     if impossible:
-        return {'error': impossible}
+        return {'errors': impossible}
     row = pd.DataFrame([values])[features]
     model = artifacts['model']
     diagnosis = model.predict(row)[0]
